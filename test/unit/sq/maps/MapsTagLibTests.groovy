@@ -12,8 +12,14 @@ import org.junit.*
 class MapsTagLibTests {
 
     void testApiTag() {
-        def res = applyTemplate('<maps:api />') 
+        def res = applyTemplate('<map:api />') 
 		println res
-		assertOutputMatches (/.*key=.*/, '<maps:api />')
+		assertOutputMatches (/.*key=.*/, '<map:api />')
+    }
+	
+    void testInitMapTag() {
+        def res = applyTemplate('<map:render />') 
+		println res
+		assertOutputMatches (/.*initMap=.*/, '<map:render />')
     }
 }
