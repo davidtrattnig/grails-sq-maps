@@ -1,4 +1,4 @@
-package sq.commons
+package sq.maps
 
 
 import groovy.json.JsonSlurper

@@ -1,4 +1,4 @@
-package at.subsquare.commons
+package sq.maps
 
 /**
  * CountryLocation
