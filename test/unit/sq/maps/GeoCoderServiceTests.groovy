@@ -1,4 +1,4 @@
-package sq.commons
+package sq.maps
 
 
 
@@ -19,11 +19,11 @@ class GeoCoderServiceTests {
     void testFindLocation() {
 
 		def service = new GeoCoderService()
-		def res = service.findLocation("kärtnerstrasse 3, wien")
+		def res = service.findLocation("neubaugasse 3, wien")
 		println "geoCode response: $res"
 		assert res
-		assert res.longitude.getAt(0..5) ==  "16.371" 
-		assert res.latitude.getAt(0..5) == "48.207"
+		assert res.longitude.getAt(0..5) ==  "16.349" 
+		assert res.latitude.getAt(0..5) == "48.198"
 		assert res.address
     }
 	
