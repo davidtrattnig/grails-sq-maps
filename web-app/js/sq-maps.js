@@ -1,8 +1,30 @@
-/** global vars **/
-var g_currentInfoWin = null;
+// file: sq-maps.js
+function SQM() {}
 
-/** places the default marker **/
-function placeMarker(map, location, isDraggable, callback) {
+SQM.prototype.map = null;
+SQM.prototype.lng = null;
+SQM.prototype.lat = null;
+SQM.prototype.zoom = null;
+SQM.prototype.markes = null;
+SQM.prototype.focus = null;
+SQM.prototype.hashPosition = false;
+
+/** set a GeoJSON valid datasource **/
+SQM.prototype.setDatasource = function(ds) {
+	alert("set datasource...");
+	$.ajax({
+	    type: "POST",
+	    url: ds,
+	    dataType: 'json',
+	    success: function (response) {
+	        geojsonLayer = L.geoJson(response, {
+	            style: yourLeafletStyle
+	        }).addTo(SQM.map);
+	    }
+	});
+	alert("set datasource done!");
+}
+SQM.prototype.placeMarker = function(map, location, isDraggable, callback) {
 
 	 var m = new google.maps.Marker({
       		position: location, 
@@ -17,7 +39,7 @@ function placeMarker(map, location, isDraggable, callback) {
 }
 
 /** places a custom marker with provided image, shadow & shape **/
-function placeMarker(map, location, isDraggable, callback, image, shadow, shape) {
+SQM.prototype.placeMarker = function(map, location, isDraggable, callback, image, shadow, shape) {
 	
 
 	var m = new google.maps.Marker({
@@ -36,7 +58,7 @@ function placeMarker(map, location, isDraggable, callback, image, shadow, shape)
 }
 
 /** places a custom marker with provided image, shadow & shape **/
-function placeMarkerWithLabel(map, location, isDraggable, callback, label) {
+SQM.prototype.placeMarkerWithLabel = function(map, location, isDraggable, callback, label) {
 	
 	var m = new MarkerWithLabel({
 	      		position: location, 
@@ -55,7 +77,7 @@ function placeMarkerWithLabel(map, location, isDraggable, callback, label) {
 }
 
 /** geocodes a given address **/
-function codeAddress(map, geocoder, address, country, callback) {
+SQM.prototype.codeAddress = function(map, geocoder, address, country, callback) {
 
 	address = address.replace(/(\r\n|\n|\r)/gm,", ");
 	address += ", " + country;
